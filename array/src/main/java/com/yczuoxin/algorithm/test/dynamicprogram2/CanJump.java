@@ -12,10 +12,13 @@ package com.yczuoxin.algorithm.test.dynamicprogram2;
 public class CanJump {
 
     public static void main(String[] args) {
-        System.out.println(Solution.canJump(new int[]{1,1,1,1,1,1,1,1,0,1}));
+        System.out.println(Solution.canJump2(new int[]{1,1,1,1,1,1,1,1,0,1}));
     }
 
     static class Solution {
+        /**
+         * 感觉这个方法比较像是递归
+         */
         public static boolean canJump(int[] nums) {
             if (nums.length < 2) return true;
             int n = nums.length;
@@ -34,6 +37,26 @@ public class CanJump {
             }
             // 针对只有两个数字的，第一个数字不为0，就必然是 true
             return true;
+        }
+
+        /**
+         * 感觉解法二更符合动态规划
+         */
+        public static boolean canJump2(int[] nums) {
+            if (nums.length < 2) return true;
+            int n = nums.length;
+            // f 表示第 i 步有没有走过
+            boolean[] f = new boolean[n + 1];
+            f[0] = true;
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= nums[i - 1]; j++) {
+                    if (i + j <= n && !f[i + j]) {
+                        // 将 i 部设置为可以到达
+                        f[i + j] = true;
+                    }
+                }
+            }
+            return f[n];
         }
     }
 }
