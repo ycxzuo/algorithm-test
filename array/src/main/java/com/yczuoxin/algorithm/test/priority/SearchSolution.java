@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
@@ -20,7 +21,7 @@ import java.util.TreeMap;
 public class SearchSolution {
 
     public static void main(String[] args) {
-        List<Pair<Integer, Integer>> search = Solution.search(new int[]{1, 5, 3});
+        List<Pair<Integer, Integer>> search = Solution.search(new int[]{4, 5, 6, 1, 2, 3, 7, 8, 9, 10});
         for (int i = 0; i < search.size(); i++) {
             System.out.println(search.get(i).getKey() + " " + search.get(i).getValue());
         }
@@ -46,7 +47,7 @@ public class SearchSolution {
                 } else if (lowerEntry == null) {
                     ans.add(new Pair<>(higherEntry.getKey() - data, higherEntry.getValue()));
                 } else {
-                    ans.add(higherEntry.getKey() - data > data - lowerEntry.getKey() ? new Pair<>(higherEntry.getKey() - data, higherEntry.getValue()) : new Pair<>(data - lowerEntry.getKey(), lowerEntry.getValue()));
+                    ans.add(higherEntry.getKey() - data < data - lowerEntry.getKey() ? new Pair<>(higherEntry.getKey() - data, higherEntry.getValue()) : new Pair<>(data - lowerEntry.getKey(), lowerEntry.getValue()));
                 }
             }
             return ans;
