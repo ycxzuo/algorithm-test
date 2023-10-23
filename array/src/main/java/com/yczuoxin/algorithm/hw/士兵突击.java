@@ -63,7 +63,7 @@ public class 士兵突击 {
             for (int[] ints : direction) {
                 dfs(arr, visit, x + ints[0], y + ints[1], ints[2], 1);
             }
-            if (result == Integer.MAX_VALUE) {
+            if (result < 0) {
                 System.out.println(-1);
             } else {
                 System.out.println(result);
@@ -72,7 +72,8 @@ public class 士兵突击 {
     }
 
     private static void dfs(char[][] arr, boolean[][] visit, int x, int y, int dirc, int step) {
-        if (x < 0 || x >= arr.length || y < 0 || y >= arr[0].length || visit[x][y] || arr[x][y] == 'X') {
+        // 小于 0 代表超过了 Integer 的最大值
+        if (x < 0 || x >= arr.length || y < 0 || y >= arr[0].length || visit[x][y] || arr[x][y] == 'X' || step < 0) {
             return;
         }
         if (arr[x][y] == 'E') {

@@ -66,7 +66,7 @@ public class 西天取经 {
             boolean[][] visited = new boolean[m][n];
             dfs(arr, 0, 0, 0, visited, 3);
 
-            if (minStep == Integer.MAX_VALUE) {
+            if (minStep < 0) {
                 System.out.println("-1");
             } else {
                 System.out.println(minStep);
@@ -86,7 +86,7 @@ public class 西天取经 {
      */
     private static void dfs(int[][] arr, int x, int y, int step, boolean[][] visited, int boom) {
         // 边界问题
-        if (x < 0 || x >= m || y < 0 || y >= n) {
+        if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y] || step < 0) {
             return;
         }
         // 到达目标位置
